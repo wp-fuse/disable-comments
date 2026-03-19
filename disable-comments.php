@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Disable Comments
  * Plugin URI:  https://github.com/wp-fuse/disable-comments
- * Description: Completely removes the WordPress comment system — UI, feeds, scripts, widgets, and admin pages. Zero configuration: activate to disable, deactivate to restore.
+ * Description: Completely removes the WordPress comment system.
  * Version:     1.0.1
  * Author:      WP Fuse
  * License:     GPLv2 or later
