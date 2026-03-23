@@ -3,6 +3,7 @@
  * Plugin Name: Disable Comments
  * Plugin URI:  https://github.com/wp-fuse/disable-comments
  * Description: Completely removes the WordPress comment system.
+ * GitHub Plugin URI: https://github.com/wp-fuse/disable-comments
  * Version:     1.0.1
  * Author:      WP Fuse
  * License:     GPLv2 or later
@@ -11,7 +12,7 @@
 
 defined('ABSPATH') || exit;
 
-// Global teardown.
+// Global teardown
 add_action('init', static function (): void {
     foreach (get_post_types([], 'names') as $post_type) {
         if (post_type_supports($post_type, 'comments')) {
@@ -30,13 +31,13 @@ add_action('init', static function (): void {
     add_filter('pre_option_default_pingback_flag', '__return_zero');
 }, 9999);
 
-// Widgets.
+// Widgets
 add_action('widgets_init', static function (): void {
     unregister_widget('WP_Widget_Recent_Comments');
     add_filter('show_recent_comments_widget_style', '__return_false');
 });
 
-// Headers / feeds / XML-RPC.
+// Headers / feeds / XML-RPC
 add_filter('wp_headers', static function (array $headers): array {
     unset($headers['X-Pingback'], $headers['x-pingback']);
     return $headers;
@@ -57,7 +58,7 @@ add_action('template_redirect', static function (): void {
     wp_die( esc_html__('Comments are disabled.', 'disable-comments'), '', ['response' => 403] );
 }, 9);
 
-// Admin bar.
+// Admin bar
 add_action('admin_bar_menu', static function ($wp_admin_bar): void {
     $wp_admin_bar->remove_node('comments');
 
@@ -70,7 +71,7 @@ add_action('admin_bar_menu', static function ($wp_admin_bar): void {
     }
 }, 999);
 
-// Admin.
+// Admin
 if (is_admin()) {
     add_action('admin_menu', static function (): void {
         remove_menu_page('edit-comments.php');
