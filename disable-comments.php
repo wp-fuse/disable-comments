@@ -4,6 +4,7 @@
  * Plugin URI:  https://github.com/wp-fuse/disable-comments
  * Description: Completely removes the WordPress comment system.
  * GitHub Plugin URI: https://github.com/wp-fuse/disable-comments
+ * Update URI: https://github.com/wp-fuse/disable-comments
  * Version:     1.0.1
  * Author:      WP Fuse
  * License:     GPLv2 or later
