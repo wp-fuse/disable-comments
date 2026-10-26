@@ -25,7 +25,7 @@ Unlike other "Disable Comments" plugins, this one focuses on **minimal overhead*
 
 ## Installation
 
-1. Upload the `wpfuse-disable-comments` folder to your `/wp-content/plugins/` directory.
+1. Upload the `disable-comments` folder to your `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Done. There are no settings to configure.
 
