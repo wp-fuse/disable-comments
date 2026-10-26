@@ -16,3 +16,29 @@ jobs:
   release:
     uses: wp-fuse/workflows/.github/workflows/release.yml@main
     secrets: inherit
+
+  zip:
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Montar zip com a pasta do plugin
+        id: pack
+        run: |
+          slug=wpfuse-disable-comments
+          version=$(sed -n 's/^ \* Version:[[:space:]]*//p' disable-comments.php | head -n 1 | tr -d '[:space:]')
+          if [ -z "$version" ]; then
+            echo "Version header not found" >&2
+            exit 1
+          fi
+          mkdir "$slug"
+          cp disable-comments.php comments-template.php README.md "$slug/"
+          zip -r "$slug.zip" "$slug"
+          echo "tag=v$version" >> "$GITHUB_OUTPUT"
+
+      - name: Anexar zip ao release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.pack.outputs.tag }}
+          files: wpfuse-disable-comments.zip
